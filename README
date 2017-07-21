@@ -1,0 +1,14 @@
+Basados en el VimRC de JeffreyWay y El Ultimate Vim Configuration de spf13 
+malestroms y mi persona nieldm forkeamos para realizar un nuevo vimrc
+adaptado a nuestras necesidades
+
+To Install | Para Instalar
+ git clone https://github.com/nieldm/My-Vim-Repo ~/.vim
+ ln -s ~/.vim/vimrc ~/.vimrc
+
+and Then | y luego
+ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+ vim +BundleInstall! +BundleClean +q
+
+Done! | Listo!
+
