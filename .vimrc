@@ -1,280 +1,58 @@
-set term=screen-256color
-"Enable filetypes
-filetype on
-filetype plugin on
-filetype indent on
-syntax on
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-"Write the old file out when switching between files.
-"set autowrite
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-"Display current cursor position in lower right corner.
-set ruler
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
-"Want a different map leader than \
-let mapleader = ','
-
-"Ever notice a slight lag after typing the leader key + command? This lowers
-"the timeout.
-set timeoutlen=500
-
-"Switch between buffers without saving
-set hidden
-
-"Set the color scheme. Change this to your preference. 
-"Here's 100 to choose from: http://www.vim.org/scripts/script.php?script_id=625
-" colorscheme twilight
-
-"Set font type and size. Depends on the resolution. Larger screens, prefer h15
-
-
-"Tab stuff
-set tabstop=3
-set shiftwidth=3
-set softtabstop=3
-set expandtab
-
-"Show command in bottom right portion of the screen
-set showcmd
-
-"Show lines numbers
-set number
-
-"Prefer relative line numbering?
-"set relativenumber"
-
-"Indent stuff
-set smartindent
-set autoindent
-
-"Always show the status line
-set laststatus=2
-
-"Prefer a slightly higher line height
-set linespace=3
-
-"Better line wrapping 
-set wrap
-set textwidth=79
-set formatoptions=qrn1
-
-"Set incremental searching"
-set incsearch
-
-"Highlight searching
-set hlsearch
-
-" case insensitive search
-set ignorecase
-set smartcase
-
-"Hide MacVim toolbar by default
-set go-=T
-
-"Hard-wrap paragraphs of text
-nnoremap <leader>q gqip
-
-"Enable code folding
-set foldenable
-
-"Hide mouse when typing
-set mousehide
-
-"Shortcut to fold tags with leader (usually \) + ft
-nnoremap <leader>ft Vatzf
-
-" Create dictionary for custom expansions
-set dictionary+=/Users/Home/.vim/dict.txt
-
-"Opens a vertical split and switches over (\v)
-nnoremap <leader>v <C-w>v<C-w>l
-
-"Split windows below the current window.
-set splitbelow              
-
-"Session settings
-set sessionoptions=resize,winpos,winsize,buffers,tabpages,folds,curdir,help
-
-"Set up an HTML5 template for all new .html files
-"autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
-
-"Load the current buffer in Firefox - Mac specific.
-abbrev ff :! open -a firefox.app %:p<cr>
-
-"Map a change directory to the desktop - Mac specific
-nmap ,d :cd ~/Desktop<cr>:e.<cr>
-
-"Shortcut for editing  vimrc file in a new tab
-nmap ,ev :tabedit $MYVIMRC<cr>
-
-"Change zen coding plugin expansion key to shift + e
-let g:user_zen_expandabbr_key = '<C-e>'
-
-"Faster shortcut for commenting. Requires T-Comment plugin
-map ,c <c-_><c-_>
-
-"Saves time; maps the spacebar to colon
-nmap <space> :
-
-"Automatically change current directory to that of the file in the buffer
-" autocmd BufEnter * cd %:p:h
-
-"Map code completion to , + tab
-imap ,<tab> <C-x><C-o>
-
-" More useful command-line completion
-" set wildmenu
-
-"Auto-completion menu
-" set wildmode=list:longest
-
-"http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
-" set completeopt=longest,menuone
-" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-"   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-" inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-"   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-"Map escape key to jj -- much faster
-imap jj <esc>
-
-"Delete all buffers (via Derek Wyatt)
-nmap <silent> ,da :exec "1," . bufnr('$') . "bd"<cr>
-
-"Bubble single lines (kicks butt)
-"http://vimcasts.org/episodes/bubbling-text/
-nmap <C-Up> ddkP
-nmap <C-Down> ddp
-
-"Bubble multiple lines
-vmap <C-Up> xkP`[V`]
-vmap <C-Down> xp`[V`]
-
-" Source the vimrc file after saving it. This way, you don't have to reload
-" Vim to see the changes.
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
-endif
-"
-" easier window navigation
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
-
-"------------------------"
-"NERDTREE PLUGIN SETTINGS
-"------------------------"
-"Shortcut for NERDTreeToggle
-nmap ,nt :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-
-"Show hidden files in NerdTree
-
-let NERDTreeShowHidden=1
-let NERDTreeShowBookmarks=1
-
-"autopen NERDTree and focus cursor in new document
-"autocmd VimEnter * NERDTree
-"autocmd VimEnter * wincmd p
-
-"Helpeful abbreviations
-iab lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-iab llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-
-"Spelling corrects. Just for example. Add yours below.
-iab teh the
-iab Teh The
-
-"--------------------------"
-" PERSONAL SETTINGS 
-" -------------------------"
-"Example for adding abbreviations - triggered by the spacebar.
-" iabbrev mysite ftp://jeff-way.com@jeffrey-way.com/domains/
-
-"Shortcut for logging into my server
-" nmap ,server :Nread ftp://jeff-way.com@jeffrey-way.com/domains/<cr>
-
-"Shortcut directly to my theme files on server
-" nmap ,theme :Nread ftp://jeff-way.com@jeffrey-way.com/domains/jeffrey-way.com/html/wp-content/themes/magazineJW/<cr>
-
-"For autocompletion of Snipmate plugin
-"let g:acp_behaviorSnipmateLength = 1
-
-"Peep open
-if has("gui_running")
-  if has("gui_gtk2")
-     set guifont=Courier\ New\ 11
-  elseif has("gui_photon")
-     set guifont=Courier\ New:s11
-  elseif has("gui_kde")
-     set guifont=Courier\ New/11/-1/5/50/0/0/0/1/0
-  elseif has("x11")
-     set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
-  else
-     set guifont=Courier_New:h11:cDEFAULT
-  endif
-endif
-if has("gui_macvim")
-  macmenu &File.New\ Tab key=<nop>
-  set guifont=Monaco:h12
-  map <c-o> <Plug>PeepOpen
-end
-
-"set t_Co=256
-color molokai                 " load a colorscheme
-set encoding=utf-8
-map <C-q> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-
-" Install Bundle {
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-" filetype off
-Bundle 'gmarik/vundle'
-" }
-
-" Bundle List {
-" SQL
-Plugin 'dbext.vim'
-" Font
-Plugin 'pluginfonts.vim'
-Plugin 'quickfonts.vim'
-" Colorschemes
-Plugin 'spf13/vim-colors'
-" PHP
-Plugin 'spf13/PIV'
-" Bundle 'beyondwords/vim-twig'
-" Python
-" Need to compile vim with +python 
-" Bundle 'klen/python-mode'
-Plugin 'python.vim'
-Plugin 'python_match.vim'
-Plugin 'pythoncomplete'
-" Javascript
-Plugin 'leshill/vim-json'
-Plugin 'groenewege/vim-less'
-Plugin 'taxilian/vim-web-indent'
-" HTML
-Plugin 'amirh/HTML-AutoCloseTag'
-Plugin 'ChrisYip/Better-CSS-Syntax-for-Vim'
-" Git
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-" Misc
-Plugin 'tpope/vim-markdown'
-Plugin 'spf13/vim-preview'
-Plugin 'tpope/vim-cucumber'
-Plugin 'Puppet-Syntax-Highlighting'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-pathogen.git'
-" Gui
-Plugin 'Lokaltog/powerline'
-" }
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
-" Use local vimrc if available {
-    if filereadable(expand("~/.vimrc.local"))
-        source ~/.vimrc.local
-    endif
-" }
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
 "
-" Power lines
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
+" ################### CONFIG ##################
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'solarized'
+
+filetype on                                                                                                                                         
+syntax enable                                                                                        
+set t_Co=256                                                                                         
+let g:solarized_termcolors=256                                                                       
+let g:solarized_termtrans = 1                                                                        
+set background=dark                                                                                  
+colorscheme solarized 
